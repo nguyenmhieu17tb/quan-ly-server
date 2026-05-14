@@ -1,0 +1,23 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    container_name: devops-server-backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/app/data
+    environment:
+      - PYTHONUNBUFFERED=1
+    command: ["sh", "-c", "mkdir -p /app/data && ln -sf /app/data/servers.db /app/servers.db && uvicorn main:app --host 0.0.0.0 --port 8000"]
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    container_name: devops-server-frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend

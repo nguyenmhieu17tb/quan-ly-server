@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DevOps Server Manager</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <h1>DevOps Server Manager (MVP)</h1>
+      <p class="desc">Giao diện Node.js để quản lý server: IP, PORT, username, password, CPU, RAM.</p>
+
+      <section class="card">
+        <h2>Thêm server</h2>
+        <form id="server-form" class="grid">
+          <input name="name" placeholder="Tên server" required />
+          <input name="ip" placeholder="IP" required />
+          <input name="port" type="number" placeholder="PORT" value="22" min="1" max="65535" required />
+          <input name="username" placeholder="Username" required />
+          <input name="password" placeholder="Password" required />
+          <input name="cpu_cores" type="number" placeholder="CPU cores" value="2" min="1" required />
+          <input name="ram_gb" type="number" placeholder="RAM (GB)" value="4" min="1" required />
+          <input name="environment" placeholder="Environment" value="production" required />
+          <input name="note" placeholder="Ghi chú" />
+          <button type="submit">Lưu server</button>
+        </form>
+      </section>
+
+      <section class="card">
+        <div class="toolbar">
+          <h2>Danh sách server</h2>
+          <button id="reload-btn">Tải lại</button>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th><th>Name</th><th>IP:Port</th><th>User</th><th>CPU</th><th>RAM</th><th>Env</th><th>Note</th><th></th>
+            </tr>
+          </thead>
+          <tbody id="server-list"></tbody>
+        </table>
+      </section>
+      <p id="status"></p>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>
