@@ -1,0 +1,12 @@
+{
+  "name": "devops-server-manager-ui",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Node.js UI cho MVP quản lý server DevOps",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
