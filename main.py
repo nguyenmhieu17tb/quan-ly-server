@@ -2,8 +2,13 @@ from contextlib import asynccontextmanager
 from typing import Optional
 
 from fastapi import Depends, FastAPI, HTTPException, Query
+<<<<<<< HEAD
+from pydantic import BaseModel, ConfigDict, Field as PydanticField
+from sqlmodel import Field, Session, SQLModel, create_engine, select
+=======
 from pydantic import BaseModel, ConfigDict, Field
 from sqlmodel import Session, SQLModel, create_engine, select
+>>>>>>> 476a26e5a4636a40588957fb48fb164f91dc9d00
 
 
 class Server(SQLModel, table=True):
@@ -20,6 +25,17 @@ class Server(SQLModel, table=True):
 
 
 class ServerCreate(BaseModel):
+<<<<<<< HEAD
+    name: str = PydanticField(min_length=2, max_length=120)
+    ip: str = PydanticField(min_length=7, max_length=45)
+    port: int = PydanticField(default=22, ge=1, le=65535)
+    username: str = PydanticField(min_length=1, max_length=100)
+    password: str = PydanticField(min_length=1, max_length=255)
+    cpu_cores: int = PydanticField(default=1, ge=1)
+    ram_gb: int = PydanticField(default=1, ge=1)
+    environment: str = PydanticField(default="production", max_length=50)
+    note: str = PydanticField(default="", max_length=500)
+=======
     name: str = Field(min_length=2, max_length=120)
     ip: str = Field(min_length=7, max_length=45)
     port: int = Field(default=22, ge=1, le=65535)
@@ -29,11 +45,23 @@ class ServerCreate(BaseModel):
     ram_gb: int = Field(default=1, ge=1)
     environment: str = Field(default="production", max_length=50)
     note: str = Field(default="", max_length=500)
+>>>>>>> 476a26e5a4636a40588957fb48fb164f91dc9d00
 
 
 class ServerUpdate(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
+<<<<<<< HEAD
+    name: Optional[str] = PydanticField(default=None, min_length=2, max_length=120)
+    ip: Optional[str] = PydanticField(default=None, min_length=7, max_length=45)
+    port: Optional[int] = PydanticField(default=None, ge=1, le=65535)
+    username: Optional[str] = PydanticField(default=None, min_length=1, max_length=100)
+    password: Optional[str] = PydanticField(default=None, min_length=1, max_length=255)
+    cpu_cores: Optional[int] = PydanticField(default=None, ge=1)
+    ram_gb: Optional[int] = PydanticField(default=None, ge=1)
+    environment: Optional[str] = PydanticField(default=None, max_length=50)
+    note: Optional[str] = PydanticField(default=None, max_length=500)
+=======
     name: Optional[str] = Field(default=None, min_length=2, max_length=120)
     ip: Optional[str] = Field(default=None, min_length=7, max_length=45)
     port: Optional[int] = Field(default=None, ge=1, le=65535)
@@ -43,6 +71,7 @@ class ServerUpdate(BaseModel):
     ram_gb: Optional[int] = Field(default=None, ge=1)
     environment: Optional[str] = Field(default=None, max_length=50)
     note: Optional[str] = Field(default=None, max_length=500)
+>>>>>>> 476a26e5a4636a40588957fb48fb164f91dc9d00
 
 
 class ServerRead(BaseModel):
